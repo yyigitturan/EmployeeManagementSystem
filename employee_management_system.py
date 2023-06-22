@@ -64,7 +64,7 @@ class Mudur(Personel):
     def personelleri_listele(self):
         for e, per in enumerate(self.personeller):
             e += 1
-            print(e, per)
+            print(e, per.tam_isim())
                         
 
 
@@ -77,4 +77,5 @@ mdr_1 = Mudur('John', 'Wick', 50000, [yaz_1, yaz_2])
 mdr_2 = Mudur('John', 'Snow', 50000, [yaz_1, yaz_2])
 
 
-print(mdr_1.eposta)
+
+
