@@ -1,7 +1,7 @@
 class Personel:
     """
     bu sınıfı kullanarak...
-    bu sınıfın içindeki fonk tam_isim()
+    bu sınıfın içindeki....
     """
     personel_sayisi = 0
     zam_orani = 1.05
