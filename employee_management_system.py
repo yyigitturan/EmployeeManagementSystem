@@ -1,5 +1,8 @@
 class Personel:
-    
+    """
+    bu sınıfı kullanarak...
+    bu sınıfın içindeki fonk tam_isim()
+    """
     personel_sayisi = 0
     zam_orani = 1.05
     
@@ -16,6 +19,15 @@ class Personel:
     
     def zam_uygula(self):
         self.maas = int(self.maas *self.zam_orani)
+    
+    def __repr__(self):
+        return f"Personel('{self.isim}', '{self.soyisim}', {self.maas})"
+    
+    def __str__(self):
+        return f"{self.tam_isim()} - {self.eposta}"
+    
+    def __add__(self, other):
+        return self.maas + other.maas
     
     @classmethod
     def zam_orani_belirle(cls, oran):
@@ -67,7 +79,11 @@ class Mudur(Personel):
             print(e, per.tam_isim())
                         
 
+per1= Personel('Lucifer', 'Michaelson', 10000)
+per2= Personel('Luci', 'Michael', 20000)
 
+print(per1)
+print(str(per1))
 
 yaz_1 = Yazilimci('John', 'Smith', 30000, 'Python')
 yaz_2 = Yazilimci('Mary', 'Smith', 35000, 'Java')
@@ -76,6 +92,6 @@ yaz_3 = Yazilimci('Test', 'User', 1000, 'C')
 mdr_1 = Mudur('John', 'Wick', 50000, [yaz_1, yaz_2])
 mdr_2 = Mudur('John', 'Snow', 50000, [yaz_1, yaz_2])
 
-
+print(per1 +per2)
 
 
