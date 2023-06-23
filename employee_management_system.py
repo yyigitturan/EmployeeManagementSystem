@@ -27,6 +27,14 @@ class Personel:
         self.isim = isim
         self.soyisim = soyisim
     
+    @tam_isim.deleter
+    def tam_isim(self):
+        print('DEGİSKENLER SİLİNDİ!!!!!')
+        self.isim = None
+        self.soyisim = None
+        
+        
+    
     def zam_uygula(self):
         self.maas = int(self.maas * self.zam_orani)
     
@@ -114,3 +122,6 @@ print(per1.tam_isim)
 per1.tam_isim = 'YAŞAR TURAN'
 print(per1.eposta)
 print(per1.tam_isim)
+
+del per1.tam_isim
+print(per1.isim)
