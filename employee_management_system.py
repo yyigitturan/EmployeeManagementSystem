@@ -1,7 +1,7 @@
 class Personel:
     """
-    bu sınıfı kullanarak...
-    bu sınıfın içindeki....
+    bu sinifi kullanarak...
+    bu sinifin içindeki fonk tam_isim()
     """
     personel_sayisi = 0
     zam_orani = 1.05
@@ -10,30 +10,43 @@ class Personel:
         self.isim = isim
         self.soyisim = soyisim
         self.maas = maas
-        self.eposta = f'{isim.lower()}.{soyisim.lower()}@firmam.com'
         
         Personel.personel_sayisi += 1
     
+    @property
+    def eposta(self):
+        return f'{self.isim.lower()}.{self.soyisim.lower()}@firmam.com'
+    
+    @property
     def tam_isim(self):
         return f'{self.isim} {self.soyisim}'
+   
+    @tam_isim.setter
+    def tam_isim(self, ad):
+        isim, soyisim = ad.split(' ')
+        self.isim = isim
+        self.soyisim = soyisim
     
     def zam_uygula(self):
-        self.maas = int(self.maas *self.zam_orani)
+        self.maas = int(self.maas * self.zam_orani)
     
     def __repr__(self):
         return f"Personel('{self.isim}', '{self.soyisim}', {self.maas})"
     
     def __str__(self):
-        return f"{self.tam_isim()} - {self.eposta}"
+        return f'{self.tam_isim} - {self.eposta}'
     
     def __add__(self, other):
         return self.maas + other.maas
     
+    def __len__(self):
+        return len(self.tam_isim)
+    
     @classmethod
     def zam_orani_belirle(cls, oran):
-        eski_oran = cls.zaman_orani
+        eski_oran = cls.zam_orani
         cls.zam_orani = oran    
-        print(f'Eski zam oran ({eski_oran}) güncellndi. Yeni oran: {cls.zam_orani}')
+        print(f'Eski zam oran ({eski_oran}) güncellendi. Yeni oran: {cls.zam_orani}')
         
     @classmethod
     def from_string(cls, per_str):
@@ -42,23 +55,23 @@ class Personel:
     
     @staticmethod
     def mesai_gunu(gun):
-        if gun.weekday == 5 or gun.weekday() == 6:
+        if gun.weekday() == 5 or gun.weekday() == 6:
             return 'Hafta Sonu'
         else:
             return 'Hafta İçi'
- 
- #Method Resolution Order  kalıtım zinciri       
+
+
 class Yazilimci(Personel):
     zam_orani = 1.1                 
 
     def __init__(self, isim, soyisim, maas, prog_dili):
         super().__init__(isim, soyisim, maas)
         self.prog_dili = prog_dili
-        # print(f'Yeni personel yazilimci kategorisine tasindi: {self.isim} {self.soyisim}')
+
 
 class Mudur(Personel):
     
-    def __init__(self, isim, soyisim, maas, personeller = None):
+    def __init__(self, isim, soyisim, maas, personeller=None):
         super().__init__(isim, soyisim, maas)
         if personeller is None:
             self.personeller = []
@@ -74,13 +87,12 @@ class Mudur(Personel):
             self.personeller.remove(per)
             
     def personelleri_listele(self):
-        for e, per in enumerate(self.personeller):
-            e += 1
-            print(e, per.tam_isim())
-                        
+        for e, per in enumerate(self.personeller, start=1):
+            print(e, per.tam_isim)
 
-per1= Personel('Lucifer', 'Michaelson', 10000)
-per2= Personel('Luci', 'Michael', 20000)
+
+per1 = Personel('Lucifer', 'Michaelson', 10000)
+per2 = Personel('Luci', 'Michael', 20000)
 
 print(per1)
 print(str(per1))
@@ -92,6 +104,13 @@ yaz_3 = Yazilimci('Test', 'User', 1000, 'C')
 mdr_1 = Mudur('John', 'Wick', 50000, [yaz_1, yaz_2])
 mdr_2 = Mudur('John', 'Snow', 50000, [yaz_1, yaz_2])
 
-print(per1 +per2)
+print(len(per1))
 
+per1.isim = 'Sam'
+print(per1.isim)
+print(per1.eposta)
+print(per1.tam_isim)
 
+per1.tam_isim = 'YAŞAR TURAN'
+print(per1.eposta)
+print(per1.tam_isim)
