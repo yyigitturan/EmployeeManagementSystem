@@ -4,13 +4,13 @@ class Personel:
     bu sinifin içindeki fonk tam_isim()
     """
     personel_sayisi = 0
-    zam_orani = 1.05
+    
     
     def __init__(self, isim, soyisim, maas):
         self.isim = isim
         self.soyisim = soyisim
         self.maas = maas
-        
+        self.zam_orani = 1.05
         Personel.personel_sayisi += 1
     
     @property
@@ -112,16 +112,9 @@ yaz_3 = Yazilimci('Test', 'User', 1000, 'C')
 mdr_1 = Mudur('John', 'Wick', 50000, [yaz_1, yaz_2])
 mdr_2 = Mudur('John', 'Snow', 50000, [yaz_1, yaz_2])
 
-print(len(per1))
-
-per1.isim = 'Sam'
 print(per1.isim)
-print(per1.eposta)
-print(per1.tam_isim)
-
-per1.tam_isim = 'YAŞAR TURAN'
-print(per1.eposta)
-print(per1.tam_isim)
-
-del per1.tam_isim
-print(per1.isim)
+print(per1.maas)
+print(per1.zam_orani)
+per1.zam_orani = 1.2
+per1.zam_uygula()
+print('Yeni maas:', per1.maas)
