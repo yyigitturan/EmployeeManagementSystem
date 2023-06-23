@@ -10,7 +10,7 @@ class Personel:
         self.isim = isim
         self.soyisim = soyisim
         self.maas = maas
-        self.zam_orani = 1.05
+        self.__zam_orani = 1.05  # PRIVATE  dışardan erişilmez
         Personel.personel_sayisi += 1
     
     @property
@@ -31,12 +31,17 @@ class Personel:
     def tam_isim(self):
         print('DEGİSKENLER SİLİNDİ!!!!!')
         self.isim = None
-        self.soyisim = None
-        
-        
+        self.soyisim = None       
+    
+    def getZamOrani(self):
+        return self.__zam_orani
+    
+    def setZamOrani(self, oran):
+        self.__zam_orani = oran
+         
     
     def zam_uygula(self):
-        self.maas = int(self.maas * self.zam_orani)
+        self.maas = int(self.maas * self.__zam_orani)
     
     def __repr__(self):
         return f"Personel('{self.isim}', '{self.soyisim}', {self.maas})"
@@ -102,8 +107,7 @@ class Mudur(Personel):
 per1 = Personel('Lucifer', 'Michaelson', 10000)
 per2 = Personel('Luci', 'Michael', 20000)
 
-print(per1)
-print(str(per1))
+
 
 yaz_1 = Yazilimci('John', 'Smith', 30000, 'Python')
 yaz_2 = Yazilimci('Mary', 'Smith', 35000, 'Java')
@@ -112,9 +116,6 @@ yaz_3 = Yazilimci('Test', 'User', 1000, 'C')
 mdr_1 = Mudur('John', 'Wick', 50000, [yaz_1, yaz_2])
 mdr_2 = Mudur('John', 'Snow', 50000, [yaz_1, yaz_2])
 
-print(per1.isim)
-print(per1.maas)
-print(per1.zam_orani)
-per1.zam_orani = 1.2
-per1.zam_uygula()
-print('Yeni maas:', per1.maas)
+print(per1.getZamOrani())
+per1.setZamOrani(oran = 1.2)
+print(per1.getZamOrani())
