@@ -34,11 +34,7 @@ class Personel:
         self.soyisim = None       
     
     def getZamOrani(self):
-        return self.__zam_orani
-    
-    def setZamOrani(self, oran):
-        self.__zam_orani = oran
-         
+        return self.__zam_orani     
     
     def zam_uygula(self):
         self.maas = int(self.maas * self.__zam_orani)
@@ -112,10 +108,12 @@ per2 = Personel('Luci', 'Michael', 20000)
 yaz_1 = Yazilimci('John', 'Smith', 30000, 'Python')
 yaz_2 = Yazilimci('Mary', 'Smith', 35000, 'Java')
 yaz_3 = Yazilimci('Test', 'User', 1000, 'C')
-
+yaz_4 = Yazilimci('Emir', 'Turan',125000, 'C') 
 mdr_1 = Mudur('John', 'Wick', 50000, [yaz_1, yaz_2])
 mdr_2 = Mudur('John', 'Snow', 50000, [yaz_1, yaz_2])
 
-print(per1.getZamOrani())
-per1.setZamOrani(oran = 1.2)
-print(per1.getZamOrani())
+
+
+yaz_4.zam_orani_belirle(12.4)
+yaz_4.zam_uygula()
+print(yaz_4.maas)
